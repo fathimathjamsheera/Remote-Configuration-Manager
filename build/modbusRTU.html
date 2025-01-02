@@ -1,0 +1,273 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modbus RTU Configuration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Data Logger Configuration Manager</h1>
+      <div class="header-right">
+        <a href="http://www.rdltech.in">www.rdltech.in</a>
+        <span>Version: V1.4.1</span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="sidebar">
+        <div class="sidebar-item">
+          <button class="sidebar-button" onclick="navigateTo('comport')">Com.Port</button>
+        </div>
+        <div class="sidebar-item">
+          <button class="sidebar-button" onclick="navigateTo('iosettings')">I/O Settings</button>
+        </div>
+        <div class="sidebar-item">
+          <button class="sidebar-button" onclick="navigateTo('modbusRTU')">Modbus RTU</button>
+        </div>
+        <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('modbusTCP')">Modbus TCP</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('wifi')">WiFi / GPRS / 4G / LTE</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('offlinedata')">Offline Data</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('devicesettings')">Device Settings</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('debug')">Debug</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('changepassword')">Change Password</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('analyze')">Analyze</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('logout')">Logout</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button" onclick="navigateTo('help')">Help</button>
+          </div>
+      </div>
+      <div class="main-content">
+        <div id="page-content">
+          <div class="modbus-rtu">
+            <label><input type="checkbox" id="enableModbusR2"> Enable Modbus R2</label>
+            <button id="readButton">Read</button>
+            <table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Start Address</th>
+                  <th>Offset</th>
+                  <th>Type</th>
+                  <th>Conversion</th>
+                  <th>Length</th>
+                  <th>Enable/Disable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Add table rows as needed -->
+              <!--</tbody>
+            </table>
+            <div class="slaves">
+              <label for="numberOfSlaves">No. of Slaves:</label>
+              <input type="number" id="numberOfSlaves" value="0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sl no</th>
+                    <th>Slave ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Add slave rows as needed -->
+                <!--</tbody>
+              </table>
+            </div>
+            <button id="readButton">Read</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function navigateTo(page) {
+      window.location.href = '/' + page + '.html';
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - Modbus RTU</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('comport')">Com.Port</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('iosettings')">I/O Settings</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('ModbusRTU')">Modbus RTU</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('modbustcp')">Modbus TCP</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('wifi')">WiFi / GPRS / 4G / LTE</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('offlinedata')">Offline Data</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('devicesettings')">Device Settings</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('debug')">Debug</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('changepassword')">Change Password</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('analyze')">Analyze</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('logout')">Logout</button>
+                </div>
+                <div class="sidebar-item">
+                    <button class="sidebar-button" onclick="navigateTo('help')">Help</button>
+                </div>
+            </div>
+            <div class="main-content">
+                <div id="page-content">
+                    <h2>Modbus RTU</h2>
+                    <button>Read</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Start Address</th>
+                                <th>Offset</th>
+                                <th>Type</th>
+                                <th>Conversion</th>
+                                <th>Length</th>
+                                <th>Enable/Disable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Add your table rows here -->
+                           <!-- <tr>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <!-- Repeat table rows as needed -->
+                        <!--</tbody>
+                    </table>
+                    <label for="numSlaves">No. of Slaves:</label>
+                    <input type="number" id="numSlaves" name="numSlaves" min="0">
+                    <label for="slaveID">Slave ID:</label>
+                    <input type="text" id="slaveID" name="slaveID">
+                    <button>Read</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - Modbus RTU</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div id="page-content">
+                    <h2>Modbus RTU</h2>
+                    <button>Read</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Start Address</th>
+                                <th>Offset</th>
+                                <th>Type</th>
+                                <th>Conversion</th>
+                                <th>Length</th>
+                                <th>Enable/Disable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <label for="numSlaves">No. of Slaves:</label>
+                    <input type="number" id="numSlaves" name="numSlaves" min="0">
+                    <label for="slaveID">Slave ID:</label>
+                    <input type="text" id="slaveID" name="slaveID">
+                    <button>Read</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

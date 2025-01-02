@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Input</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="settings.js"></script>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Digital Input</h2>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="saveLog"> Save Log (Saves to SD Card)</label>
+      <button class="edit-button" onclick="sendReadCommand()">Read</button>
+    </div>
+    <div class="checkbox-group">
+      <label><input type="radio" name="inputType" value="digitalInput"> Digital Input</label>
+      <button class="edit-button" onclick="sendReadCommand()">Read</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Enable/Disable</th>
+          <th>Tagname</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="checkbox" name="channel1"></td>
+          <td><input type="text" name="tagname1"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="checkbox" name="channel2"></td>
+          <td><input type="text" name="tagname2"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><input type="checkbox" name="channel3"></td>
+          <td><input type="text" name="tagname3"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><input type="checkbox" name="channel4"></td>
+          <td><input type="text" name="tagname4"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="edit-button">Read</button>
+    <p>Note: Data Logged Only when Input Channel status changed</p>
+  </div>
+</body>
+</html>

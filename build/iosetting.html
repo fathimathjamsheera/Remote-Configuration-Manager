@@ -1,0 +1,926 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - I/O Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <style>
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div class="tabs-container">
+                    <ul class="tabs">
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#analog">Analog</a></li>
+                        <li><a href="#digital-input">Digital Input</a></li>
+                    </ul>
+                    <div id="settings" class="tab-content">
+                        <label>
+                            <input type="checkbox" id="modbus" name="modbus">
+                            Modbus
+                        </label>
+                        <label>
+                            <input type="checkbox" id="analog" name="analog">
+                            Analog
+                        </label>
+                        <label>
+                            <input type="checkbox" id="digital-input" name="digital-input">
+                            Digital Input
+                        </label>
+                        <label>
+                            <input type="checkbox" id="modbus-tcp" name="modbus-tcp">
+                            Modbus TCP
+                        </label>
+                        <button>Read</button>
+                    </div>
+                    <div id="analog" class="tab-content" style="display:none;">
+                        <!-- Analog content goes here -->
+                   <!--
+                    </div>
+                    <div id="digital-input" class="tab-content" style="display:none;">
+                        <!-- Digital Input content goes here -->
+                    <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Script for tab functionality
+            const tabs = document.querySelectorAll('.tabs li a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const target = document.querySelector(tab.getAttribute('href'));
+                    tabContents.forEach(tc => tc.style.display = 'none');
+                    target.style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
+-->
+
+
+ 
+
+
+<!-- Inside iosetting.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - I/O Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <style>
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div class="tabs-container">
+                    <ul class="tabs">
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#analog">Analog</a></li>
+                        <li><a href="#digital-input">Digital Input</a></li>
+                    </ul>
+                    <div id="settings" class="tab-content">
+                        <label>
+                            <input type="checkbox" id="modbus" name="modbus">
+                            Modbus
+                        </label>
+                        <label>
+                            <input type="checkbox" id="analog" name="analog">
+                            Analog
+                        </label>
+                        <label>
+                            <input type="checkbox" id="digital-input" name="digital-input">
+                            Digital Input
+                        </label>
+                        <label>
+                            <input type="checkbox" id="modbus-tcp" name="modbus-tcp">
+                            Modbus TCP
+                        </label>
+                        <button>Read</button>
+                    </div>
+                    <div id="analog" class="tab-content" style="display:none;">
+                        <!-- Analog content goes here -->
+                   <!--</div>
+                    <div id="digital-input" class="tab-content" style="display:none;">
+                        <!-- Digital Input content goes here -->
+                 <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Script for tab functionality
+            const tabs = document.querySelectorAll('.tabs li a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const target = document.querySelector(tab.getAttribute('href'));
+                    tabContents.forEach(tc => tc.style.display = 'none');
+                    target.style.display = 'block';
+                });
+            });
+
+            // Send command when Modbus checkbox is checked
+            document.getElementById('modbus').addEventListener('change', function() {
+                if (this.checked) {
+                    fetch('/send-command', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ command: '$AT+WRITE=1100' })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Command sent: ', data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - I/O Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="iosetting.js" defer></script>
+    <style>
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div class="tabs-container">
+                    <ul class="tabs">
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#analog">Analog</a></li>
+                        <li><a href="#digital-input">Digital Input</a></li>
+                    </ul>
+                    <div id="settings" class="tab-content">
+                        <label>
+                            <input type="checkbox" id="modbus" name="modbus">
+                            Modbus
+                        </label>
+                        <label>
+                            <input type="checkbox" id="analog" name="analog">
+                            Analog
+                        </label>
+                        <label>
+                            <input type="checkbox" id="digital-input" name="digital-input">
+                            Digital Input
+                        </label>
+                        <label>
+                            <input type="checkbox" id="modbus-tcp" name="modbus-tcp">
+                            Modbus TCP
+                        </label>
+                        <button id="readButton">Read</button>
+                    </div>
+                    <div id="analog" class="tab-content" style="display:none;">
+                        <!-- Analog content goes here -->
+                    <!--</div>
+                    <div id="digital-input" class="tab-content" style="display:none;">
+                        <!-- Digital Input content goes here -->
+                    <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - I/O Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="iosetting.js" defer></script>
+    <style>
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div class="tabs-container">
+                    <ul class="tabs">
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#analog">Analog</a></li>
+                        <li><a href="#digital-input">Digital Input</a></li>
+                    </ul>
+                    <div id="settings" class="tab-content">
+                        <label>
+                            <input type="checkbox" id="modbus" name="modbus">
+                            Modbus
+                        </label>
+                        <label>
+                            <input type="checkbox" id="analog" name="analog">
+                            Analog
+                        </label>
+                        <label>
+                            <input type="checkbox" id="digital-input" name="digital-input">
+                            Digital Input
+                        </label>
+                        <label>
+                            <input type="checkbox" id="modbus-tcp" name="modbus-tcp">
+                            Modbus TCP
+                        </label>
+                        <button id="readButton">Read</button>
+                    </div>
+                    <div id="analog" class="tab-content" style="display:none;">
+                        <!-- Analog content goes here -->
+                    <!--</div>
+                    <div id="digital-input" class="tab-content" style="display:none;">
+                        <!-- Digital Input content goes here -->
+                    <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>  -->
+
+
+
+
+
+
+<!--proper code -->            
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="iosetting.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #2f3b4c;
+            padding: 20px;
+            color: white;
+        }
+        .sidebar-item {
+            margin-bottom: 20px;
+        }
+        .sidebar-button {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #3a4a5f;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #3a4a5f;
+        }
+        .sidebar-button:hover {
+            background-color: #4a5f7a;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .content h1 {
+            margin-top: 0;
+        }
+        .tree {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li {
+            margin: 0;
+            padding: 0 12px;
+            line-height: 20px;
+            color: #369;
+            font-weight: bold;
+            position: relative;
+        }
+        .tree li ul {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li.open > ul {
+            display: block;
+        }
+        .tree li span {
+            cursor: pointer;
+        }
+        .tree li:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-bottom: 1px solid #777;
+            width: 12px;
+            height: 20px;
+        }
+        .tree li:after {
+            position: absolute;
+            top: 18px;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-top: 1px solid #777;
+            width: 12px;
+            height: 100%;
+            content: '';
+        }
+        .tree li:last-child:after {
+            display: none;
+        }
+        .tree li:last-child:before {
+            border-radius: 0 0 0 4px;
+        }
+    </style>
+</head>
+<body>
+    Sidebar
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <a href="configure.html" class="sidebar-button">Configure</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="debug.html" class="sidebar-button">Debug</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="index.html" class="sidebar-button">Logout</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="help.html" class="sidebar-button">Help</a>
+        </div>
+    </div>
+
+
+
+
+    <!-- Content -->
+    <!--<div class="content">
+        <h1>Configure Settings</h1>
+        <ul class="tree">
+            <li>
+                <span>RDL240628160615</span>
+                <ul>
+                    <li>
+                        <span>Modbus RTU (Master)</span>
+                        <ul>
+                            <li>
+                                <span>Common Polling Interval</span>
+                                <ul>
+                                    <li><span>Reg</span></li>
+                                </ul>
+                            </li>
+                            <li><span>Common Register Group</span></li>
+                            <li><span>Different Polling Interval</span></li>
+                        </ul>
+                    </li>
+                    <li><span>Modbus TCP (Master)</span></li>
+                    <li><span>RTU Com Port Settings</span></li>
+                    <li>
+                        <span>I/O Settings</span>
+                        <ul>
+                            <li><span>Analog</span></li>
+                            <li><span>Digital Input</span></li>
+                            <li><span>Settings</span></li>
+                        </ul>
+                    </li>
+                    <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+                    <li><span>Offline Data</span></li>
+                    <li><span>Change Password</span></li>
+                    <li><span>Backup and Restore</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tree li span').forEach(function (span) {
+            span.addEventListener('click', function (e) {
+                e.stopPropagation();
+                let parentLi = this.parentElement;
+                parentLi.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html> 
+
+
+ -->
+
+
+
+<!-- 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager - I/O Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <style>
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .section a {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+                <a href="http://www.rdltech.in">www.rdltech.in</a>
+                <span>Version: V1.4.1</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <div class="tabs-container">
+                    <ul class="tabs">
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="analog.html">Analog</a></li>
+                        <li><a href="digitalinput.html">Digital Input</a></li>
+                    </ul>
+                    <div id="settings" class="tab-content">
+                        <label>
+                            <input type="checkbox" id="modbus" name="modbus">
+                            Modbus
+                        </label>
+                        <label>
+                            <input type="checkbox" id="analog" name="analog">
+                            Analog
+                        </label>
+                        <label>
+                            <input type="checkbox" id="digital-input" name="digital-input">
+                            Digital Input
+                        </label>
+                        <label>
+                            <input type="checkbox" id="modbus-tcp" name="modbus-tcp">
+                            Modbus TCP
+                        </label>
+                        <button id="readButton">Read</button>
+                    </div>
+                    <div id="analog" class="tab-content" style="display:none;">
+                        <!-- Analog content goes here -->
+                  <!-- </div>
+                    <div id="digital-input" class="tab-content" style="display:none;">
+                        <!-- Digital Input content goes here -->
+                   <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Script for tab functionality
+            const tabs = document.querySelectorAll('.tabs li a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const target = document.querySelector(tab.getAttribute('href'));
+                    tabContents.forEach(tc => tc.style.display = 'none');
+                    target.style.display = 'block';
+                });
+            });
+
+            // Handle Modbus read button click
+            document.getElementById('readButton').addEventListener('click', function () {
+                if (document.getElementById('modbus').checked) {
+                    fetch('/send-command', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ command: '$AT+READ=1100' })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Command sent successfully');
+                        } else {
+                            console.error('Failed to send command');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>  -->
+ 
+
+
+
+
+
+
+
+
+
+ <!--correct code-->
+ <!DOCTYPE html>
+<html lang="en">   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="iosetting.js" defer></script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #e0e0e0; /* Added background color for the body */
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 200px;
+            background-color: #2f3b4c;
+            padding: 20px;
+            color: white;
+            box-sizing: border-box;
+        }
+        .sidebar-item {
+            margin-bottom: 20px;
+        }
+        .sidebar-button {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #3a4a5f;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #3a4a5f;
+            transition: background-color 0.3s;
+        }
+        .sidebar-button:hover {
+            background-color: #4a5f7a;
+        }
+
+        /* Content styles */
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff; /* Added background color for the content area */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow effect for a better look */
+            margin: 20px; /* Added margin to separate content from the edges */
+            border-radius: 5px; /* Added border radius for a smoother look */
+        }
+        .content h1 {
+            margin-top: 0;
+        }
+
+        /* Tree view styles */
+        .tree {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li {
+            margin: 0;
+            padding: 0 12px;
+            line-height: 20px;
+            color: #369;
+            font-weight: bold;
+            position: relative;
+        }
+        .tree li ul {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li.open > ul {
+            display: block;
+        }
+        .tree li span {
+            cursor: pointer;
+        }
+        .tree li:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-bottom: 1px solid #777;
+            width: 12px;
+            height: 20px;
+        }
+        .tree li:after {
+            position: absolute;
+            top: 18px;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-top: 1px solid #777;
+            width: 12px;
+            height: 100%;
+            content: '';
+        }
+        .tree li:last-child:after {
+            display: none;
+        }
+        .tree li:last-child:before {
+            border-radius: 0 0 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+   <div class="sidebar">
+        <div class="sidebar-item">
+            <a href="iosetting.html" class="sidebar-button">Configure</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="debug.html" class="sidebar-button">Debug</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="index.html" class="sidebar-button">Logout</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="help.html" class="sidebar-button">Help</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+   -<div class="content">
+        <h1>Configure Settings</h1>
+        <ul class="tree">
+            <li>
+                <span>RDL240628160615</span>
+                <ul>
+                    <li>
+                        <span>Modbus RTU (Master)</span>
+                        <ul>
+                            <li>
+                                <span>Common Polling Interval</span>
+                                <ul>
+                                    <li><span>Reg</span></li>
+                                </ul>
+                            </li>
+                            <li><span>Common Register Group</span></li>
+                            <li><span>Different Polling Interval</span></li>
+                        </ul>
+                    </li>
+                    <li><span>Modbus TCP (Master)</span></li>
+                    <li><span>RTU Com Port Settings</span></li>
+                    <li>
+                        <span>I/O Settings</span>
+                        <ul>
+                            <li><span>Analog</span></li>
+                            <li><span>Digital Input</span></li>
+                            <li><a href="settings.html">Settings</a></li>
+                        </ul>
+                    </li>
+                    <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+                    <li><span>Offline Data</span></li>
+                    <li><span>Change Password</span></li>
+                    <li><span>Backup and Restore</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- JavaScript for tree view -->
+    <script>
+        document.querySelectorAll('.tree li span').forEach(function (span) {
+            span.addEventListener('click', function (e) {
+                e.stopPropagation();
+                let parentLi = this.parentElement;
+                parentLi.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

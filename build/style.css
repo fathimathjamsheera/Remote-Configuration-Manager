@@ -1,0 +1,859 @@
+   /* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .header-right a, .header-right span {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .content {
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .sidebar {
+    background-color: #333;
+    color: white;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .sidebar-item {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .sidebar-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .sidebar-button:hover {
+    background-color: #555;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .connection-type {
+    margin: 20px 0;
+    font-size: 1.2em;
+  }
+  
+  .connection-type label {
+    margin-right: 20px;
+  }
+  
+  .config-group {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .config-group label {
+    margin-right: 10px;
+  }
+  
+  .config-group input,
+  .config-group button {
+    margin-right: 10px;
+  }
+  
+  .login-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .login-popup-content h2 {
+    margin: 0 0 20px 0;
+  }
+  
+  .login-popup-content label {
+    margin-right: 10px;
+  }
+  
+  .login-popup-content input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .login-popup-content button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login-popup-content button:hover {
+    background-color: #555;
+  }
+  
+
+
+
+/* Style for the sidebar */
+
+/* .sidebar {
+  width: 200px;
+  background-color: #111;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.sidebar-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #575757;
+} 
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #111;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.sidebar-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #575757;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.content h1 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+} */ 
+
+
+
+
+
+
+/* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header-right a, .header-right span {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  background-color: #2f3b4c;
+  color: white;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #3a4a5f;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.sidebar-button:hover {
+  background-color: #555;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.connection-type {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.connection-type label {
+  margin-right: 20px;
+}
+
+.config-group {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.config-group label {
+  margin-right: 10px;
+}
+
+.config-group input,
+.config-group button,
+.config-group select {
+  margin-right: 10px;
+}
+
+.login-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.login-popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-popup-content h2 {
+  margin: 0 0 20px 0;
+}
+
+.login-popup-content label {
+  margin-right: 10px;
+}
+
+.login-popup-content input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.login-popup-content button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-popup-content button:hover {
+  background-color: #555;
+}
+
+.config-options {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.config-options h2 {
+  margin-top: 0;
+}
+
+.config-group {
+  margin-bottom: 20px;
+}
+
+
+ */
+
+
+
+  /* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header-right a, .header-right span {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  background-color: #2f3b4c;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #3a4a5f;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px; 
+ }
+
+.sidebar-button:hover {
+  background-color: #555;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+}
+
+.connection-type,
+.server-config,
+.login-popup-content,
+.config-options {
+  margin: 20px 0;
+}
+
+.config-group {
+  margin: 10px 0;
+}
+
+#loginPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.login-popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="password"], input[type="number"], select {
+  padding: 5px;
+  width: 200px;
+  margin-left: 10px;
+}
+  */
+
+
+
+
+
+
+
+
+/* 
+ body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header-right a, .header-right span {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  background-color: #2f3b4c;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #3a4a5f;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px; 
+}
+
+/* Rounded corners */
+
+/*
+.sidebar-button:hover {
+  background-color: #555;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+}
+
+.connection-type,
+.server-config,
+.login-popup-content,
+.config-options {
+  margin: 20px 0;
+}
+
+.config-group {
+  margin: 10px 0;
+}
+
+#loginPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.login-popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="password"], input[type="number"], select {
+  padding: 5px;
+  width: 200px;
+  margin-left: 10px;
+}
+  */
+
+
+
+
+
+
+
+
+
+ 
+
+
+/* Existing styles  */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+} 
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header-right a, .header-right span {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  background-color: #2f3b4c;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #3a4a5f;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 20px;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.sidebar-button:hover {
+  background-color: #555;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+}
+
+.connection-type,
+.server-config,
+.login-popup-content,
+.config-options {
+  margin: 20px 0;
+}
+
+.config-group {
+  margin: 10px 0;
+}
+
+#loginPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.login-popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="password"], input[type="number"], select {
+  padding: 5px;
+  width: 200px;
+  margin-left: 10px;
+}
+
+/* Additional styles for new sidebar */
+
+.sidebar-item img {
+  margin-top: 20px;
+}
+
+.sidebar-item p {
+  color: white;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+
+
+ .tree li ul {
+  display: none;
+}
+
+.tree li.open > ul {
+  display: block;
+}
+
+.tree li.open > span.expandable::before {
+  content: "▼";
+  margin-right: 5px;
+}
+
+.tree li > span.expandable::before {
+  content: "►";
+  margin-right: 5px;
+}
+
+.tree li span:hover {
+  background-color: #e0e0e0;
+}
+
+
+ 
+
+#debugSection {
+  margin-top: 20px;
+}
+
+#debugSection h2 {
+  margin-bottom: 10px;
+}
+
+#debugSection #startTime {
+  font-weight: bold;
+}
+
+ 
+
+
+
+
+ 

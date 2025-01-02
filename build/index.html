@@ -1,0 +1,789 @@
+ <!-- <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Data Logger Configuration Manager</h1>
+        <div class="header-right">
+          <a href="http://www.rdltech.in">www.rdltech.in</a>
+          <span>Version: V1.1.1</span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="sidebar-item">
+            <button class="sidebar-button">Com.Port</button>
+            <br>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Debug</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Help</button>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="connection-type">
+            <label><input type="radio" name="connectionType" value="Remote" checked> Remote</label>
+          </div>
+          <div class="server-config">
+            <div class="config-group">
+              <label for="portInput">Com. Port:</label>
+              <input type="text" id="portInput" value="5152">
+              <button id="listenButton">Open</button>
+            </div>
+          </div>
+          <div id="loginPopup" class="login-popup">
+            <div class="login-popup-content">
+              <h2>Login</h2>
+              <label for="password">Password:</label>
+              <input type="password" id="password">
+              <button id="loginButton">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      document.getElementById('listenButton').addEventListener('click', function() {
+        fetch('/start-server', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ port: document.getElementById('portInput').value })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.message);
+          listenForMessages();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+  
+      function listenForMessages() {
+        const socket = new WebSocket('ws://localhost:3000');
+  
+        socket.addEventListener('open', function (event) {
+          console.log('WebSocket connection established');
+        });
+  
+        socket.addEventListener('message', function (event) {
+          console.log('Message from server ', event.data);
+  
+          if (event.data === 'END_OF_MESSAGES') {
+            document.getElementById('loginPopup').style.display = 'flex';
+          }
+        });
+  
+        socket.addEventListener('error', function (event) {
+          console.error('WebSocket error: ', event);
+        });
+  
+        socket.addEventListener('close', function (event) {
+          console.log('WebSocket connection closed');
+        });
+      }
+  
+      document.getElementById('loginButton').addEventListener('click', function() {
+        const password = document.getElementById('password').value;
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ password })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = '/iosetting.html';
+          } else {
+            alert("Incorrect password");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+  </html>
+  
+   
+   
+
+  
+
+
+   -->
+
+
+
+  <!-- <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .sidebar {
+        width: 250px;
+        background-color: #f8f9fa;
+        padding: 15px;
+      }
+  
+      .sidebar-item {
+        margin-bottom: 10px;
+      }
+  
+      .sidebar-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        display: block;
+      }
+  
+      .sidebar-button:hover {
+        background-color: #0056b3;
+      }
+  
+      .sidebar-submenu {
+        display: none;
+        padding-left: 20px;
+        margin-top: 5px;
+      }
+  
+      .sidebar-submenu a {
+        display: block;
+        padding: 5px 0;
+        color: #007bff;
+        text-decoration: none;
+      }
+  
+      .sidebar-submenu a:hover {
+        text-decoration: underline;
+      }
+  
+      .sidebar-item.active .sidebar-submenu {
+        display: block;
+      }
+  
+      /* Tree view styling */
+      .tree-view ul {
+        list-style-type: none;
+        padding-left: 20px;
+      }
+  
+      .tree-view li {
+        margin-bottom: 5px;
+      }
+  
+      .tree-view a {
+        text-decoration: none;
+        color: #007bff;
+      }
+  
+      .tree-view a:hover {
+        text-decoration: underline;
+      }
+  
+      .tree-view .expandable::before {
+        content: '\25B6'; /* Right-pointing triangle */
+        display: inline-block;
+        margin-right: 5px;
+      }
+  
+      .tree-view .expanded::before {
+        content: '\25BC'; /* Down-pointing triangle */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Data Logger Configuration Manager</h1>
+        <div class="header-right">
+          <a href="http://www.rdltech.in">www.rdltech.in</a>
+          <span>Version: V1.1.1</span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="sidebar-item">
+            <button class="sidebar-button">Com.Port</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Configure</button>
+            <div class="sidebar-submenu">
+              <div class="tree-view">
+                <ul>
+                  <li class="expandable">
+                    <a href="javascript:void(0)">RDL Datalogger</a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="ModbusRTU.html">Modbus RTU (Master)</a>
+                        <ul>
+                          <li><a href="#">Common Polling Interval</a></li>
+                          <li><a href="#">Common Register Group</a></li>
+                          <li><a href="#">Different Polling Interval</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="modbustcp.html">Modbus TCP (Master)</a></li>
+                      <li><a href="comport.html">RTU Com Port Settings</a></li>
+                      <li><a href="devicesettings.html">Device Settings</a>
+                        <ul>
+                          <li><a href="iosetting.html">I/O Settings</a>
+                            <ul>
+                              <li><a href="#">Analog</a></li>
+                              <li><a href="#">Digital Input</a></li>
+                              <li><a href="#">Settings</a></li>
+                            </ul>
+                          </li>
+                          <li><a href="wifi.html">WiFi / GPRS / 4G / LTE</a></li>
+                          <li><a href="offlinedata.html">Offline Data</a></li>
+                          <li><a href="#">Change Password</a></li>
+                          <li><a href="#">Backup and Restore</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Debug</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Logout</button>
+          </div>
+          <div class="sidebar-item">
+            <button class="sidebar-button">Help</button>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="connection-type">
+            <label><input type="radio" name="connectionType" value="Remote" checked> Remote</label>
+          </div>
+          <div class="server-config">
+            <div class="config-group">
+              <label for="portInput">Com. Port:</label>
+              <input type="text" id="portInput" value="5152">
+              <button id="listenButton">Open</button>
+            </div>
+          </div>
+          <div id="loginPopup" class="login-popup">
+            <div class="login-popup-content">
+              <h2>Login</h2>
+              <label for="password">Password:</label>
+              <input type="password" id="password">
+              <button id="loginButton">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      document.getElementById('listenButton').addEventListener('click', function() {
+        fetch('/start-server', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ port: document.getElementById('portInput').value })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.message);
+          listenForMessages();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+  
+      function listenForMessages() {
+        const socket = new WebSocket('ws://localhost:3000');
+  
+        socket.addEventListener('open', function (event) {
+          console.log('WebSocket connection established');
+        });
+  
+        socket.addEventListener('message', function (event) {
+          console.log('Message from server ', event.data);
+  
+          if (event.data === 'END_OF_MESSAGES') {
+            document.getElementById('loginPopup').style.display = 'flex';
+          }
+        });
+  
+        socket.addEventListener('error', function (event) {
+          console.error('WebSocket error: ', event);
+        });
+  
+        socket.addEventListener('close', function (event) {
+          console.log('WebSocket connection closed');
+        });
+      }
+  
+      document.getElementById('loginButton').addEventListener('click', function() {
+        const password = document.getElementById('password').value;
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ password })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = '/iosetting.html';
+          } else {
+            alert("Incorrect password");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+  
+      // Add event listeners to sidebar buttons
+      document.querySelectorAll('.sidebar-button').forEach(button => {
+        button.addEventListener('click', () => {
+          const parent = button.parentElement;
+          parent.classList.toggle('active');
+        });
+      });
+  
+      // Add event listeners to tree view links
+      document.querySelectorAll('.expandable > a').forEach(link => {
+        link.addEventListener('click', () => {
+          const parent = link.parentElement;
+          parent.classList.toggle('expanded');
+        });
+      });
+    </script>
+  </body>
+  </html>
+  
+  
+   -->
+
+
+
+
+
+
+
+
+
+
+   <!-- <!DOCTYPE html>
+   <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Data Logger Configuration Manager</title>
+     <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+     <div class="container">
+       <div class="header">
+         <h1>Data Logger Configuration Manager</h1>
+         <div class="header-right">
+           <a href="http://www.rdltech.in">www.rdltech.in</a>
+           <span>Version: V1.1.1</span>
+         </div>
+       </div>
+       <div class="content">
+         <div class="sidebar">
+           <div class="sidebar-item">
+             <button class="sidebar-button">Com.Port</button>
+           </div>
+           <div class="sidebar-item">
+             <button class="sidebar-button">Debug</button>
+           </div>
+           <div class="sidebar-item">
+             <button class="sidebar-button">Help</button>
+           </div>
+         </div>
+         <div class="main-content">
+           <div class="connection-type">
+             <label><input type="radio" name="connectionType" value="Remote" checked> Remote</label>
+           </div>
+           <div class="server-config">
+             <div class="config-group">
+               <label for="portInput">Com. Port:</label>
+               <input type="text" id="portInput" value="5152">
+               <button id="listenButton">Open</button>
+             </div>
+           </div>
+           <div id="loginPopup" class="login-popup">
+             <div class="login-popup-content">
+               <h2>Login</h2>
+               <label for="password">Password:</label>
+               <input type="password" id="password">
+               <button id="loginButton">Login</button>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   
+     <script>
+       document.getElementById('listenButton').addEventListener('click', function() {
+         fetch('/start-server', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({ port: document.getElementById('portInput').value })
+         })
+         .then(response => response.json())
+         .then(data => {
+           console.log(data.message);
+           listenForMessages();
+         })
+         .catch(error => {
+           console.error('Error:', error);
+         });
+       });
+   
+       function listenForMessages() {
+         const socket = new WebSocket('ws://localhost:3000');
+   
+         socket.addEventListener('open', function (event) {
+           console.log('WebSocket connection established');
+         });
+   
+         socket.addEventListener('message', function (event) {
+           console.log('Message from server ', event.data);
+   
+           if (event.data === 'END_OF_MESSAGES') {
+             document.getElementById('loginPopup').style.display = 'flex';
+           }
+         });
+   
+         socket.addEventListener('error', function (event) {
+           console.error('WebSocket error: ', event);
+         });
+   
+         socket.addEventListener('close', function (event) {
+           console.log('WebSocket connection closed');
+         });
+       }
+   
+       document.getElementById('loginButton').addEventListener('click', function() {
+         const password = document.getElementById('password').value;
+         fetch('/login', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({ password })
+         })
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             document.getElementById('loginPopup').style.display = 'none';
+           } else {
+             alert("Incorrect password");
+           }
+         })
+         .catch(error => {
+           console.error('Error:', error);
+         });
+       });
+     </script>
+   </body>
+   </html>
+     -->
+
+
+
+
+
+<!--correct code-->
+      <!-- <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Logger Configuration Manager</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+              <a href="http://www.rdltech.in">www.rdltech.in</a>
+              <span>Version: V1.1.1</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="sidebar">
+              <div class="sidebar-item">
+                <button class="sidebar-button">Com.Port</button>
+              </div>
+              <div class="sidebar-item">
+                <button class="sidebar-button" onclick="navigateTo('index.html')">Debug</button>
+              </div>
+              <div class="sidebar-item">
+                <button class="sidebar-button" >Help</button>
+              </div>
+            </div>
+            <div class="main-content">
+              <div class="connection-type">
+                <label><input type="radio" name="connectionType" value="Remote" checked> Remote</label>
+              </div>
+              <div class="server-config">
+                <div class="config-group">
+                  <label for="portInput">Com. Port:</label>
+                  <input type="text" id="portInput" value="5152">
+                  <button id="listenButton">Open</button>
+                </div>
+              </div>
+              <div id="loginPopup" class="login-popup">
+                <div class="login-popup-content">
+                  <h2>Login</h2>
+                  <label for="password">Password:</label>
+                  <input type="password" id="password">
+                  <button id="loginButton">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          document.getElementById('listenButton').addEventListener('click', function() {
+            fetch('/start-server', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ port: document.getElementById('portInput').value })
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.message);
+              listenForMessages();
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          });
+      
+          function listenForMessages() {
+            const socket = new WebSocket('ws://localhost:3000');
+      
+            socket.addEventListener('open', function (event) {
+              console.log('WebSocket connection established');
+            });
+      
+            socket.addEventListener('message', function (event) {
+              console.log('Message from server ', event.data);
+      
+              if (event.data === 'END_OF_MESSAGES') {
+                document.getElementById('loginPopup').style.display = 'flex';
+              }
+            });
+      
+            socket.addEventListener('error', function (event) {
+              console.error('WebSocket error: ', event);
+            });
+      
+            socket.addEventListener('close', function (event) {
+              console.log('WebSocket connection closed');
+            });
+          }
+      
+          document.getElementById('loginButton').addEventListener('click', function() {
+            const password = document.getElementById('password').value;
+            fetch('/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ password })
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                window.location.href = data.redirectTo;
+              } else {
+                alert("Incorrect password");
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          });
+        </script>
+      </body>
+      </html>  -->
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Logger Configuration Manager</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Data Logger Configuration Manager</h1>
+            <div class="header-right">
+              <a href="http://www.rdltech.in">www.rdltech.in</a>
+              <span>Version: V1.1.1</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="sidebar">
+              <div class="sidebar-item">
+                <button class="sidebar-button">Com.Port</button>
+              </div>
+              <div class="sidebar-item">
+                <button class="sidebar-button" onclick="navigateTo('index.html')">Debug</button>
+              </div>
+              <div class="sidebar-item">
+                <button class="sidebar-button">Help</button>
+              </div>
+            </div>
+            <div class="main-content">
+              <div class="connection-type">
+                <label><input type="radio" name="connectionType" value="Remote" checked> Remote</label>
+              </div>
+              <div class="server-config">
+                <div class="config-group">
+                  <label for="portInput">Com. Port:</label>
+                  <input type="text" id="portInput" value="5152">
+                  <button id="listenButton">Open</button>
+                   <button id="closeButton">Close</button> <!--New Close button -->
+                </div>
+              </div>
+              <div id="loginPopup" class="login-popup">
+                <div class="login-popup-content">
+                  <h2>Login</h2>
+                  <label for="password">Password:</label>
+                  <input type="password" id="password">
+                  <button id="loginButton">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          document.getElementById('listenButton').addEventListener('click', function() {
+            fetch('/start-server', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ port: document.getElementById('portInput').value })
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.message);
+              listenForMessages();
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          });
+      
+          document.getElementById('closeButton').addEventListener('click', function() {
+            fetch('/disconnect-client', {
+              method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.message); // Log the message from the server
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          });
+      
+          function listenForMessages() {
+            const socket = new WebSocket('ws://localhost:3000');
+      
+            socket.addEventListener('open', function (event) {
+              console.log('WebSocket connection established');
+            });
+      
+            socket.addEventListener('message', function (event) {
+              console.log('Message from server ', event.data);
+      
+              if (event.data === 'END_OF_MESSAGES') {
+                document.getElementById('loginPopup').style.display = 'flex';
+              }
+            });
+      
+            socket.addEventListener('error', function (event) {
+              console.error('WebSocket error: ', event);
+            });
+      
+            socket.addEventListener('close', function (event) {
+              console.log('WebSocket connection closed');
+            });
+          }
+      
+          document.getElementById('loginButton').addEventListener('click', function() {
+            const password = document.getElementById('password').value;
+            fetch('/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ password })
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                window.location.href = data.redirectTo;
+              } else {
+                alert("Incorrect password");
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          });
+        </script>
+      </body>
+      </html>
+      

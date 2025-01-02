@@ -1,0 +1,568 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Debug Information</h1>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <p id="portStatus"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Display the port opened time from localStorage
+            const portOpenedTime = localStorage.getItem('portOpenedTime');
+            if (portOpenedTime) {
+                document.getElementById('portStatus').textContent = `Port opened: ${portOpenedTime}`;
+            }
+        });
+    </script>
+</body>
+</html>  -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Debug Information</h1>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <p id="portStatus"></p>
+                <div id="commandLog">
+                    <h2>Command Log</h2>
+                    <ul id="commandList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Display the port opened time from localStorage
+            const portOpenedTime = localStorage.getItem('portOpenedTime');
+            if (portOpenedTime) {
+                document.getElementById('portStatus').textContent = `Port opened: ${portOpenedTime}`;
+            }
+
+            // Fetch and display command logs
+            fetch('/get-commands')
+                .then(response => response.json())
+                .then(data => {
+                    const commandList = document.getElementById('commandList');
+                    data.forEach(command => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${command.type}: ${command.command}`;
+                        commandList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching commands:', error);
+                });
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Debug Information</h1>
+        </div>
+        <div class="content">
+            <div id="sidebar-container"></div>
+            <div class="main-content">
+                <p id="portStatus"></p>
+                <div id="commandLog">
+                    <h2>Command Log</h2>
+                    <ul id="commandList"></ul>
+                </div>
+                <div id="deviceResponse">
+                    <h2>Device Response</h2>
+                    <p id="responseText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and include the sidebar
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                });
+
+            // Display the port opened time from localStorage
+            const portOpenedTime = localStorage.getItem('portOpenedTime');
+            if (portOpenedTime) {
+                document.getElementById('portStatus').textContent = `Port opened: ${portOpenedTime}`;
+            }
+
+            // Fetch and display command logs
+            fetch('/get-commands')
+                .then(response => response.json())
+                .then(data => {
+                    const commandList = document.getElementById('commandList');
+                    data.forEach(command => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${command.type}: ${command.command}`;
+                        commandList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching commands:', error);
+                });
+
+            // Fetch and display device response
+            fetch('/get-device-response')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('responseText').textContent = data.response;
+                })
+                .catch(error => {
+                    console.error('Error fetching device response:', error);
+                });
+        });
+    </script>
+</body>
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="common.js"></script>
+  <script defer src="debug.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="sidebar-container"></div>
+    <div class="debug-container">
+      <h2>Debug</h2>
+      <div id="command-output"></div>
+    </div>
+  </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="debug.js"></script>
+</head>
+<body>
+  <div class="debug-container">
+    <h2>Debug</h2>
+    <div id="commandOutput" class="command-output"></div>
+  </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Debug Page</h1>
+    </div>
+    <div class="content">
+      <div id="debugSection">
+        <h2>Debug Information</h2>
+        <div id="startTime"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Listen for messages from the WebSocket server
+    function listenForMessages() {
+      const socket = new WebSocket('ws://localhost:3000');
+
+      socket.addEventListener('open', function (event) {
+        console.log('WebSocket connection established');
+      });
+
+      socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data);
+
+        if (event.data.startsWith('TCP_SERVER_STARTED_AT:')) {
+          const startTime = event.data.split(': ')[1];
+          document.getElementById('startTime').textContent = `Server started at: ${startTime}`;
+        }
+      });
+
+      socket.addEventListener('error', function (event) {
+        console.error('WebSocket error: ', event);
+      });
+
+      socket.addEventListener('close', function (event) {
+        console.log('WebSocket connection closed');
+      });
+    }
+
+    // Call the function to start listening for WebSocket messages
+    listenForMessages();
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="debug.js"></script>
+</head>
+<body>
+  <div class="debug-container">
+    <h2>Debug</h2>
+    <div id="messages"></div>
+  </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body> 
+</html>
+-->
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Info</title>
+</head>
+<body>
+  <h1>TCP Server Debug Info</h1>
+  <p id="port-status">Loading...</p>
+
+  <script>
+    // Fetch the port open date and time
+    fetch('/port-open-info')
+      .then(response => response.json())
+      .then(data => {
+        if (data.dateTime) {
+          document.getElementById('port-status').textContent = `Port opened on: ${data.dateTime}`;
+        } else {
+          document.getElementById('port-status').textContent = 'TCP server is not running.';
+        }
+      })
+      .catch(err => {
+        document.getElementById('port-status').textContent = 'Error fetching port info.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

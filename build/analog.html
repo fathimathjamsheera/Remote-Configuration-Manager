@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analog Settings</title>
+  <link rel="stylesheet" href="analog.css">
+  <script defer src="analog.js"></script>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Analog Settings</h2>
+    <div class="analog-settings">
+      <div class="polling-interval">
+        <div class="radio-buttons">
+          <label><input type="radio" name="interval" value="sec" onchange="updateInterval('sec')"> Sec</label>
+          <label><input type="radio" name="interval" value="min" onchange="updateInterval('min')"> Min</label>
+          <label><input type="radio" name="interval" value="hour" onchange="updateInterval('hour')"> Hour</label>
+        </div>
+        <label>Analog Polling Interval:</label>
+        <div>
+          <input type="text" id="interval" name="interval">
+          <span id="interval-unit">(sec)</span>
+        </div>
+        <label><input type="checkbox" name="saveLog"> Save Log (Saves to SD Card)</label>
+        <button class="read-button" onclick="sendReadCommand()">Read</button>
+      </div>
+      
+      <div class="analog-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Resolution</th>
+              <th>Enable/Disable</th>
+              <th>Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>16 bit</td>
+              <td><input type="checkbox" name="enable1"></td>
+              <td>0-10v</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>16 bit</td>
+              <td><input type="checkbox" name="enable2"></td>
+              <td>0-10v</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>16 bit</td>
+              <td><input type="checkbox" name="enable3"></td>
+              <td>0-10v</td>
+            </tr>
+          </tbody>
+        </table>
+        <label><input type="checkbox" name="extensionAdc"> Extension ADC</label>
+        <button class="read-button" onclick="sendReadCommand()">Read</button>
+      </div>
+      
+      <div class="scaling-options">
+        <label><input type="checkbox" name="enableScaling"> Enable Scaling</label>
+        <button class="read-button" onclick="sendReadCommand()">Read</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

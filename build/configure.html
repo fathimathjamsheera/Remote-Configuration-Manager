@@ -1,0 +1,729 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #2f3b4c;
+            padding: 20px;
+            color: white;
+        }
+        .sidebar-item {
+            margin-bottom: 20px;
+        }
+        .sidebar-button {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #3a4a5f;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #3a4a5f;
+        }
+        .sidebar-button:hover {
+            background-color: #4a5f7a;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .content h1 {
+            margin-top: 0;
+        }
+        .tree {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li {
+            margin: 0;
+            padding: 0 12px;
+            line-height: 20px;
+            color: #369;
+            font-weight: bold;
+            position: relative;
+        }
+        .tree li ul {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tree li.open > ul {
+            display: block;
+        }
+        .tree li span {
+            cursor: pointer;
+        }
+        .tree li:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-bottom: 1px solid #777;
+            width: 12px;
+            height: 20px;
+        }
+        .tree li:after {
+            position: absolute;
+            top: 18px;
+            left: -12px;
+            border-left: 1px solid #777;
+            border-top: 1px solid #777;
+            width: 12px;
+            height: 100%;
+            content: '';
+        }
+        .tree li:last-child:after {
+            display: none;
+        }
+        .tree li:last-child:before {
+            border-radius: 0 0 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <!--<div class="sidebar">
+        <div class="sidebar-item">
+            <a href="configure.html" class="sidebar-button">Configure</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="debug.html" class="sidebar-button">Debug</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="index.html" class="sidebar-button">Logout</a>
+        </div>
+        <div class="sidebar-item">
+            <a href="help.html" class="sidebar-button">Help</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <!--<div class="content">
+        <h1>Configure Settings</h1>
+        <ul class="tree">
+            <li>
+                <span>RDL240628160615</span>
+                <ul>
+                    <li>
+                        <span>Modbus RTU (Master)</span>
+                        <ul>
+                            <li>
+                                <span>Common Polling Interval</span>
+                                <ul>
+                                    <li><span>Reg</span></li>
+                                </ul>
+                            </li>
+                            <li><span>Common Register Group</span></li>
+                            <li><span>Different Polling Interval</span></li>
+                        </ul>
+                    </li>
+                    <li><span>Modbus TCP (Master)</span></li>
+                    <li><span>RTU Com Port Settings</span></li>
+                    <li>
+                        <span>I/O Settings</span>
+                        <ul>
+                            <li><span>Analog</span></li>
+                            <li><span>Digital Input</span></li>
+                            <li><span>Settings</span></li>
+                        </ul>
+                    </li>
+                    <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+                    <li><span>Offline Data</span></li>
+                    <li><span>Change Password</span></li>
+                    <li><span>Backup and Restore</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tree li span').forEach(function (span) {
+            span.addEventListener('click', function (e) {
+                e.stopPropagation();
+                let parentLi = this.parentElement;
+                parentLi.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html> 
+
+
+ -->
+
+
+
+
+
+
+
+
+ <!-- <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Configure</title>
+   <link rel="stylesheet" href="style.css">
+   <script defer src="main.js"></script>
+ </head>
+ <body>
+   <div class="container">
+     <div id="sidebar-container"></div>
+     <div class="content">
+       <h1>Configure Settings</h1>
+       <ul class="tree">
+         <li>
+           <span>RDL240628160615</span>
+           <ul>
+             <li>
+               <span>Modbus RTU (Master)</span>
+               <ul>
+                 <li><span>Common Polling Interval</span>
+                   <ul><li><span>Reg</span></li></ul>
+                 </li>
+                 <li><span>Common Register Group</span></li>
+                 <li><span>Different Polling Interval</span></li>
+               </ul>
+             </li>
+             <li><span>Modbus TCP (Master)</span></li>
+             <li><span>RTU Com Port Settings</span></li>
+             <li>
+               <span>I/O Settings</span>
+               <ul>
+                 <li><span>Analog</span></li>
+                 <li><span>Digital Input</span></li>
+                 <li><span>Settings</span></li>
+               </ul>
+             </li>
+             <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+             <li><span>Offline Data</span></li>
+             <li><span>Change Password</span></li>
+             <li><span>Backup and Restore</span></li>
+           </ul>
+         </li>
+       </ul>
+     </div>
+   </div>
+ 
+   <script>
+     document.querySelectorAll('.tree li span').forEach(function (span) {
+       span.addEventListener('click', function (e) {
+         e.stopPropagation();
+         let parentLi = this.parentElement;
+         parentLi.classList.toggle('open');
+       });
+     });
+   </script>
+ </body>
+ </html> -->
+ 
+
+
+
+
+  <!-- <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger Configuration Manager</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Data Logger Configuration Manager</h1>
+        <div class="header-right">
+          <a href="http://www.rdltech.in">www.rdltech.in</a>
+          <span>Version: V1.1.1</span>
+        </div>
+      </div>
+      <div class="content">
+        <div id="sidebar"></div> <!-- Placeholder for the sidebar -->
+        <!--<div class="main-content">
+          <div class="config-options">
+            <h2>Configure Settings</h2>
+            <div class="config-group">
+              <label for="modbusMode">Modbus Mode:</label>
+              <select id="modbusMode">
+                <option value="rtu">RTU</option>
+                <option value="tcp">TCP</option>
+              </select>
+            </div>
+            <div class="config-group">
+              <label for="pollingInterval">Polling Interval:</label>
+              <input type="number" id="pollingInterval" value="1000"> ms
+            </div>
+            <div class="config-group">
+              <label for="reg">Register:</label>
+              <input type="text" id="reg" value="40001">
+            </div>
+            <button id="saveButton">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      // Load the sidebar content
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('sidebar.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('sidebar').innerHTML = data;
+          });
+      });
+  
+      document.getElementById('saveButton').addEventListener('click', function() {
+        const settings = {
+          modbusMode: document.getElementById('modbusMode').value,
+          pollingInterval: document.getElementById('pollingInterval').value,
+          reg: document.getElementById('reg').value
+        };
+  
+        fetch('/save-config', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(settings)
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert('Settings saved');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+  </html>
+  
+   -->
+
+
+
+
+
+
+   <!-- Content for Configure
+<div>
+    <h2>Configure Settings</h2>
+    <div id="jstree">
+      <ul>
+        <li>
+            <span>RDL240628160615</span>
+            <ul>
+              <li>
+                <span>Modbus RTU (Master)</span>
+                <ul>
+                  <li><span>Common Polling Interval</span>
+                    <ul><li><span>Reg</span></li></ul>
+                  </li>
+                  <li><span>Common Register Group</span></li>
+                  <li><span>Different Polling Interval</span></li>
+                </ul>
+              </li>
+              <li><span>Modbus TCP (Master)</span></li>
+              <li><span>RTU Com Port Settings</span></li>
+              <li>
+                <span>I/O Settings</span>
+                <ul>
+                  <li><span>Analog</span></li>
+                  <li><span>Digital Input</span></li>
+                  <li><span>Settings</span></li>
+                </ul>
+              </li>
+              <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+              <li><span>Offline Data</span></li>
+              <li><span>Change Password</span></li>
+              <li><span>Backup and Restore</span></li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+      $('#jstree').jstree();
+    });
+  </script>
+   -->
+
+
+
+
+
+<!-- configure.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tree ul {
+      padding-left: 20px;
+      list-style: none;
+    }
+
+    .tree li {
+      position: relative;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    .tree li span {
+      padding: 5px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .tree li ul {
+      display: none;
+    }
+
+    .tree li.open > ul {
+      display: block;
+    }
+
+    .tree li.open > span::before {
+      content: "▼";
+      margin-right: 5px;
+    }
+
+    .tree li > span::before {
+      content: "►";
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Configure Settings</h1>
+    <ul class="tree">
+      <li>
+        <span>RDL240628160615</span>
+        <ul>
+          <li>
+            <span>Modbus RTU (Master)</span>
+            <ul>
+              <li>
+                <span>Common Polling Interval</span>
+                <ul>
+                  <li><span>Reg</span></li>
+                </ul>
+              </li>
+              <li><span>Common Register Group</span></li>
+              <li><span>Different Polling Interval</span></li>
+            </ul>
+          </li>
+          <li><span>Modbus TCP (Master)</span></li>
+          <li><span>RTU Com Port Settings</span></li>
+          <li>
+            <span>I/O Settings</span>
+            <ul>
+              <li><span>Analog</span></li>
+              <li><span>Digital Input</span></li>
+              <li><span>Settings</span></li>
+            </ul>
+          </li>
+          <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+          <li><span>Offline Data</span></li>
+          <li><span>Change Password</span></li>
+          <li><span>Backup and Restore</span></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tree li span').forEach(function(span) {
+      span.addEventListener('click', function(e) {
+        e.stopPropagation();
+        let parentLi = this.parentElement;
+        parentLi.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="sidebar-container"></div>
+    <div class="content">
+      <ul class="tree">
+        <li>
+          <span>RDL240628160615</span>
+          <ul>
+            <li>
+              <span>Modbus RTU (Master)</span>
+              <ul>
+                <li>
+                  <span>Common Polling Interval</span>
+                  <ul>
+                    <li><span>Reg</span></li>
+                  </ul>
+                </li>
+                <li><span>Common Register Growth</span></li>
+                <li><span>Different Polling Interval</span></li>
+              </ul>
+            </li>
+            <li><span>Modbus TCP (Master)</span></li>
+            <li><span>RTU Com. Port Settings</span></li>
+            <li><span>Device Settings</span></li>
+            <li>
+              <span>I/O Settings</span>
+              <ul>
+                <li><span>Analog</span></li>
+                <li><span>Digital Input</span></li>
+                <li><span>Settings</span></li>
+              </ul>
+            </li>
+            <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+            <li><span>Offline Data</span></li>
+            <li><span>Change Password</span></li>
+            <li><span>Backup and Restore</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tree li span').forEach(function (span) {
+      span.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let parentLi = this.parentElement;
+        parentLi.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>  -->
+
+
+
+
+
+
+<!-- correct code -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="sidebar-container"></div>
+    <div class="content">
+      <ul class="tree">
+        <li>
+          <span class="expandable">RDL240628160615</span>
+          <ul>
+            <li>
+              <span class="expandable">Modbus RTU (Master)</span>
+              <ul>
+                <li>
+                  <span class="expandable">Common Polling Interval</span>
+                  <ul>
+                    <li><span>Reg</span></li>
+                  </ul>
+                </li>
+                <li><span>Common Register Growth</span></li>
+                <li><span>Different Polling Interval</span></li>
+              </ul>
+            </li>
+            <li><span>Modbus TCP (Master)</span></li>
+            <li><span>RTU Com. Port Settings</span></li>
+            <li><span>Device Settings</span></li>
+            <li>
+              <span class="expandable">I/O Settings</span>
+              <ul>
+                <!-- <li><span>Analog</span></li> -->
+                <li><a href="digitalinput.html">DigitalInput</a></li>
+                <!-- <li><span>Digital Input</span></li> -->
+                <li><a href="analog.html">Analog</a></li>
+                <!-- <li><span>Settings</span></li> -->
+                <li><a href="settings.html">Settings</a></li>
+              </ul>
+            </li>
+            <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+            <li><span>Offline Data</span></li>
+            <li><span>Change Password</span></li>
+            <li><span>Backup and Restore</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tree li span').forEach(function (span) {
+      span.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let parentLi = this.parentElement;
+        parentLi.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="sidebar-container"></div>
+    <div class="content">
+      <ul class="tree">
+        <li>
+          <span class="expandable">RDL240628160615</span>
+          <ul>
+            <li>
+              <span class="expandable">Modbus RTU (Master)</span>
+              <ul>
+                 <li>
+                  <span class="expandable">Common Polling Interval</span>
+                  <ul>
+                    <li><span>Reg</span></li>
+                  </ul>
+                </li> 
+                <li><span>Com.Port Settings</span></li>
+                <li><span>Modbus Settings</span></li>
+                <li><span>Polling Interval</span></li>
+              </ul>
+            </li>
+            <li><span>Modbus TCP (Master)</span></li>
+            
+            <li>
+              <span class="expandable">I/O Settings</span>
+              <ul>
+                <li><span onclick="loadContent('analog.html')">Analog</span></li>
+                <li><span onclick="loadContent('digitalInput.html')">Digital Input</span></li>
+                <li><span onclick="loadContent('settings.html')">Settings</span></li>
+              </ul>
+            </li>
+            <li><span>WiFi/ GPRS/ 4G/ LTE</span></li>
+            <li><span>Offline Data</span></li>
+            <li><span>Change Password</span></li>
+            <li><span>Backup and Restore</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tree li span').forEach(function (span) {
+      span.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let parentLi = this.parentElement;
+        parentLi.classList.toggle('open');
+      });
+    });
+
+    function loadContent(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('main-content').innerHTML = html;
+          if (page === 'configure.html') {
+            initTree();
+          }
+        })
+        .catch(error => {
+          console.error('Error loading content:', error);
+        });
+    }
+  </script>
+</body>
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
